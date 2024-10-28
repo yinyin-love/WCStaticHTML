@@ -7,14 +7,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>iPersistence</title>
+    <title>Love</title>
     <style>
         body {
             -webkit-font-smoothing: antialiased;
             font-family: Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
-            background-image: url('https://raw.githubusercontent.com/we11cheng/we11cheng.github.io/master/bg.jpg');
+            background-image: url('love.gif');
             font-size: 85%;
             margin: 0;
+            background-repeat: no-repeat;
+            /* 防止背景图像重复 */
+            background-size: cover;
+            /* 确保背景图像覆盖整个屏幕 */
+        }
+
+        h1 {
+            color: #333;
+            /* 标题颜色 */
+            font-size: 5em;
+            /* 标题大小 */
+            margin: 0;
+            /* 移除默认外边距 */
+        }
+
+        h2 {
+            color: #555;
+            /* 副标题颜色 */
+            font-size: 2em;
+            /* 副标题大小 */
         }
 
         h2 {
@@ -44,56 +64,35 @@
 
 <body>
     <div class="content">
-        <h2>Yinyin，我们已经在一起了</h2>
+        <h1>Yinyin ❤️ Linlin</h1>
+        <h2>We have been in love for</h2>
         <div class="timer">
             <b id="d"></b> Days <b id="h"></b> Hours <b id="m"></b> Minutes <b id="s"></b> Seconds
         </div>
     </div>
     <script language="javascript">
-        function timer() {
-            window.setInterval(timer, 1000);
-            var start = new Date("2024-08-10 00:00:00");
-            var t = new Date().getTime() - start;
-            var d = ~~(t / 1000 / 60 / 60 / 24);
-            var h = ~~(t / 1000 / 60 / 60 % 24);
-            var m = ~~(t / 1000 / 60 % 60);
-            var s = ~~(t / 1000 % 60);
-            if (h < 10) h = "0" + h;
-            if (m < 10) m = "0" + m;
-            if (s < 10) s = "0" + s;
-            document.getElementById('d').innerHTML = d;
-            document.getElementById('h').innerHTML = h;
-            document.getElementById('m').innerHTML = m;
-            document.getElementById('s').innerHTML = s;
+        function show_date_time() {
+            window.setTimeout("show_date_time()", 1000);
+            BirthDay = new Date("8/10/2024 00:00:00");//这个日期是可以修改的
+            today = new Date();
+            timeold = (today.getTime() - BirthDay.getTime());
+            sectimeold = timeold / 1000
+            secondsold = Math.floor(sectimeold);
+            msPerDay = 24 * 60 * 60 * 1000
+            e_daysold = timeold / msPerDay
+            daysold = Math.floor(e_daysold);
+            e_hrsold = (e_daysold - daysold) * 24;
+            hrsold = Math.floor(e_hrsold);
+            e_minsold = (e_hrsold - hrsold) * 60;
+            minsold = Math.floor((e_hrsold - hrsold) * 60);
+            seconds = Math.floor((e_minsold - minsold) * 60);
+            document.getElementById('d').innerHTML = daysold;
+            document.getElementById('h').innerHTML = hrsold;
+            document.getElementById('m').innerHTML = minsold;
+            document.getElementById('s').innerHTML = seconds;
         }
-        timer();
+        show_date_time();
     </script>
-    <!-->
-    <script language="javascript">
-	    function show_date_time() {
-	        window.setTimeout("show_date_time()", 1000);
-	        BirthDay = new Date("10/8/2024 00:00:00");//这个日期是可以修改的
-	        today = new Date();
-	        timeold = (today.getTime() - BirthDay.getTime());
-	        sectimeold = timeold / 1000
-	        secondsold = Math.floor(sectimeold);
-	        msPerDay = 24 * 60 * 60 * 1000
-	        e_daysold = timeold / msPerDay
-	        daysold = Math.floor(e_daysold);
-	        e_hrsold = (e_daysold - daysold) * 24;
-	        hrsold = Math.floor(e_hrsold);
-	        e_minsold = (e_hrsold - hrsold) * 60;
-	        minsold = Math.floor((e_hrsold - hrsold) * 60);
-	        seconds = Math.floor((e_minsold - minsold) * 60);
-          document.getElementById('d').innerHTML = daysold;
-          document.getElementById('h').innerHTML = hrsold;
-          document.getElementById('m').innerHTML = minsold;
-          document.getElementById('s').innerHTML = seconds;
-	    }
-	    show_date_time();
-	</script>
-  <!-->
-
 </body>
 
 </html>
