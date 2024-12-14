@@ -23,11 +23,11 @@
       }
 
       h1 {
-        color: #FF748B;
+        color: #ff748b;
         font-size: 5em;
         margin: 0;
         text-shadow: 2px 2px 5px black;
-    text-shadow: 2px 2px 5px rgba(255, 105, 180, 0.5);
+        text-shadow: 2px 2px 5px rgba(255, 105, 180, 0.5);
       }
 
       h2 {
@@ -36,7 +36,7 @@
         font-weight: 400;
         text-shadow: 1px 1px 3px black;
         color: #ffb6c1; /* 浪漫的浅粉色 */
-    text-shadow: 1px 1px 3px rgba(255, 182, 193, 0.5);
+        text-shadow: 1px 1px 3px rgba(255, 182, 193, 0.5);
       }
 
       .content {
@@ -58,8 +58,7 @@
       }
 
       .timer b {
-        color: #FF748B;
-        
+        color: #ff748b;
       }
 
       /* 优化音乐控制样式 */
@@ -73,7 +72,7 @@
       }
 
       .play-button {
-        background-color: rgba(255, 255, 255, 0.7);
+        background-color: rgba(255, 255, 255, 1);
         border: none;
         border-radius: 50%;
         width: 50px;
@@ -86,17 +85,18 @@
         align-items: center;
         justify-content: center;
         box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+        transition: background-color 0.3s ease; 
       }
 
       .play-button:hover {
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: rgba(0, 0, 0, 0.5); /* 鼠标悬停时变暗 */
       }
 
       .music-selector {
         font-size: 16px;
         padding: 5px 10px;
         margin-left: 15px;
-        border: 2px solid #FF748B;
+        border: 2px solid #ff748b;
         border-radius: 20px;
         background-color: rgba(255, 182, 193, 0.5);
         color: #fff;
@@ -126,7 +126,15 @@
   <body>
     <audio id="background-music" loop>您的浏览器不支持音频播放。</audio>
     <div class="content">
-      <h1>Yinyin 🩷 Linlin</h1>
+      <h1>
+        Yinyin
+        <img
+          src="yinlin.png"
+          alt="Love"
+          style="width: 1em; height: 1em; vertical-align: middle"
+        />
+        Linlin
+      </h1>
       <h2>We have been in love for</h2>
       <div class="timer">
         <b id="d"></b> Days <b id="h"></b> Hours <b id="m"></b> Minutes
@@ -138,8 +146,7 @@
           id="music-selector"
           class="music-selector"
           onchange="changeMusic()"
-        >
-        </select>
+        ></select>
       </div>
     </div>
     <script language="javascript">
@@ -188,9 +195,11 @@
         var audioElement = document.getElementById("background-music");
         var playButton = document.querySelector(".play-button");
         if (audioElement.paused) {
-          playButton.textContent = "❤️";
+          playButton.innerHTML =
+            '<img src="pause.png" alt="Paused" style="width: 2em; height: 2em; vertical-align: middle;">';
         } else {
-          playButton.textContent = "💖";
+          playButton.innerHTML =
+            '<img src="watch.png" alt="Playing" style="width: 2em; height: 2em; vertical-align: middle;">';
         }
       }
 
