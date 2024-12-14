@@ -1,97 +1,232 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="renderer" content="webkit" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <title>Love</title>
     <style>
-        body {
-            -webkit-font-smoothing: antialiased;
-            font-family: Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
-            background-image: url('love.gif');
-            font-size: 85%;
-            margin: 0;
-            background-repeat: no-repeat;
-            /* 防止背景图像重复 */
-            background-size: cover;
-            /* 确保背景图像覆盖整个屏幕 */
-        }
+      body {
+        -webkit-font-smoothing: antialiased;
+        font-family: "Segoe Script", "Comic Sans MS", cursive;
+        background-image: url("YinLin.svg");
+        font-size: 85%;
+        margin: 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top center;
+      }
 
-        h1 {
-            color: #333;
-            /* 标题颜色 */
-            font-size: 5em;
-            /* 标题大小 */
-            margin: 0;
-            /* 移除默认外边距 */
-        }
+      h1 {
+        color: #FF748B;
+        font-size: 5em;
+        margin: 0;
+        text-shadow: 2px 2px 5px black;
+    text-shadow: 2px 2px 5px rgba(255, 105, 180, 0.5);
+      }
 
-        h2 {
-            color: #555;
-            /* 副标题颜色 */
-            font-size: 2em;
-            /* 副标题大小 */
-        }
+      h2 {
+        color: #fff;
+        font-size: 220%;
+        font-weight: 400;
+        text-shadow: 1px 1px 3px black;
+        color: #ffb6c1; /* 浪漫的浅粉色 */
+    text-shadow: 1px 1px 3px rgba(255, 182, 193, 0.5);
+      }
 
-        h2 {
-            font-size: 220%;
-            font-weight: 400;
-        }
+      .content {
+        position: absolute;
+        width: 100%;
+        top: 30%;
+        transform: translate(0, -50%);
+        text-align: center;
+      }
 
-        .content {
-            position: absolute;
-            width: 100%;
-            top: 40%;
-            transform: translate(0, -50%);
-            text-align: center;
-        }
+      .timer {
+        font-size: 180%;
+        line-height: 1.5;
+        margin: 1em 0 0.5em 0;
+        color: #fff;
+        text-shadow: 1px 1px 3px #ff69b4;
+        color: #fff0f5; /* 浪漫的淡紫色 */
+        text-shadow: 1px 1px 3px rgba(255, 182, 193, 0.8);
+      }
 
-        .timer {
-            font-size: 180%;
-            line-height: 1.5;
-            margin: 1em 0;
-        }
+      .timer b {
+        color: #FF748B;
+        
+      }
 
-        .timer b {
-            color: rgb(253, 99, 125);
+      /* 优化音乐控制样式 */
+      .music-controls {
+        margin-top: 10px;
+        display: inline-flex;
+        align-items: center;
+        background-color: rgba(255, 192, 203, 0.5);
+        padding: 10px 20px;
+        border-radius: 30px;
+      }
+
+      .play-button {
+        background-color: rgba(255, 255, 255, 0.7);
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        color: #ff69b4;
+        cursor: pointer;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+      }
+
+      .play-button:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+
+      .music-selector {
+        font-size: 16px;
+        padding: 5px 10px;
+        margin-left: 15px;
+        border: 2px solid #FF748B;
+        border-radius: 20px;
+        background-color: rgba(255, 182, 193, 0.5);
+        color: #fff;
+        outline: none;
+        box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+      }
+
+      .music-selector option {
+        background-color: #fff;
+        color: #ff69b4;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
         }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .div {
+        animation: fadeIn 2s;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    <audio id="background-music" loop>您的浏览器不支持音频播放。</audio>
     <div class="content">
-        <h1>Yinyin ❤️ Linlin</h1>
-        <h2>We have been in love for</h2>
-        <div class="timer">
-            <b id="d"></b> Days <b id="h"></b> Hours <b id="m"></b> Minutes <b id="s"></b> Seconds
-        </div>
+      <h1>Yinyin 🩷 Linlin</h1>
+      <h2>We have been in love for</h2>
+      <div class="timer">
+        <b id="d"></b> Days <b id="h"></b> Hours <b id="m"></b> Minutes
+        <b id="s"></b> Seconds
+      </div>
+      <div class="music-controls">
+        <button class="play-button" onclick="togglePlay()">❤️</button>
+        <select
+          id="music-selector"
+          class="music-selector"
+          onchange="changeMusic()"
+        >
+        </select>
+      </div>
     </div>
     <script language="javascript">
-        function show_date_time() {
-            window.setTimeout("show_date_time()", 1000);
-            BirthDay = new Date("8/10/2024 00:00:00");//这个日期是可以修改的
-            today = new Date();
-            timeold = (today.getTime() - BirthDay.getTime());
-            sectimeold = timeold / 1000
-            secondsold = Math.floor(sectimeold);
-            msPerDay = 24 * 60 * 60 * 1000
-            e_daysold = timeold / msPerDay
-            daysold = Math.floor(e_daysold);
-            e_hrsold = (e_daysold - daysold) * 24;
-            hrsold = Math.floor(e_hrsold);
-            e_minsold = (e_hrsold - hrsold) * 60;
-            minsold = Math.floor((e_hrsold - hrsold) * 60);
-            seconds = Math.floor((e_minsold - minsold) * 60);
-            document.getElementById('d').innerHTML = daysold;
-            document.getElementById('h').innerHTML = hrsold;
-            document.getElementById('m').innerHTML = minsold;
-            document.getElementById('s').innerHTML = seconds;
-        }
-        show_date_time();
-    </script>
-</body>
+      function show_date_time() {
+        window.setTimeout(show_date_time, 1000);
+        BirthDay = new Date("8/10/2024 00:00:00");
+        today = new Date();
+        timeold = today.getTime() - BirthDay.getTime();
+        sectimeold = timeold / 1000;
+        secondsold = Math.floor(sectimeold);
+        msPerDay = 24 * 60 * 60 * 1000;
+        e_daysold = timeold / msPerDay;
+        daysold = Math.floor(e_daysold);
+        e_hrsold = (e_daysold - daysold) * 24;
+        hrsold = Math.floor(e_hrsold);
+        e_minsold = (e_hrsold - hrsold) * 60;
+        minsold = Math.floor((e_hrsold - hrsold) * 60);
+        seconds = Math.floor((e_minsold - minsold) * 60);
+        document.getElementById("d").innerHTML = daysold;
+        document.getElementById("h").innerHTML = hrsold;
+        document.getElementById("m").innerHTML = minsold;
+        document.getElementById("s").innerHTML = seconds;
+      }
+      show_date_time();
 
+      function changeMusic() {
+        var musicSelector = document.getElementById("music-selector");
+        var selectedMusic = musicSelector.value;
+        var audioElement = document.getElementById("background-music");
+        audioElement.src = selectedMusic;
+        audioElement.play();
+        updatePlayButton();
+      }
+
+      function togglePlay() {
+        var audioElement = document.getElementById("background-music");
+        if (audioElement.paused) {
+          audioElement.play();
+        } else {
+          audioElement.pause();
+        }
+        updatePlayButton();
+      }
+
+      function updatePlayButton() {
+        var audioElement = document.getElementById("background-music");
+        var playButton = document.querySelector(".play-button");
+        if (audioElement.paused) {
+          playButton.textContent = "❤️";
+        } else {
+          playButton.textContent = "💖";
+        }
+      }
+
+      // 自动播放音乐
+      window.onload = function () {
+        var audioElement = document.getElementById("background-music");
+        var musicSelector = document.getElementById("music-selector");
+        // 动态生成音乐选项
+        var musicList = [
+          "./Audio/A thousand years.mp3",
+          "./Audio/Beautiful in white.mp3",
+          "./Audio/Die with a smile.mp3",
+          "./Audio/Golden hour.mp3",
+          "./Audio/It's you.mp3",
+          "./Audio/Love me like you do.mp3",
+          "./Audio/Perfect.mp3",
+          "./Audio/Until I found you.mp3",
+          "./Audio/Young and beautiful.mp3",
+        ];
+        musicList.forEach(function (music) {
+          var option = document.createElement("option");
+          option.value = music;
+          option.text = music
+            .substring(music.lastIndexOf("/") + 1)
+            .replace(".mp3", "");
+          musicSelector.appendChild(option);
+        });
+
+        audioElement.src = musicSelector.value;
+        audioElement.play();
+        updatePlayButton();
+      };
+
+      // 更新播放按钮状态
+      var audioElement = document.getElementById("background-music");
+      audioElement.onplay = updatePlayButton;
+      audioElement.onpause = updatePlayButton;
+    </script>
+  </body>
 </html>
